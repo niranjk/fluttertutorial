@@ -51,8 +51,6 @@ class BasicWidgets extends StatelessWidget {
           Image.memory(name: 'images/a_dot_burr.jpeg'),
           /// Image.network - Load image from network
           Image.network(name: 'images/a_dot_burr.jpeg'),
-
-
           /// Icon Widget is used to display a glyph from a font described in IconData class.
           Icon(icon:Icons.email),
         ],
