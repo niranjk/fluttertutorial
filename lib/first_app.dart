@@ -26,7 +26,7 @@ class FirstApp extends StatelessWidget {
         primarySwatch: Colors.blue, 
       ), 
       home: MyFirstScreen(title: "First Screen",),
-    )
+    );
   }
 }
 /// Note* StatelessWidget only requires a single method build to be implemented in its derived class.
@@ -37,7 +37,7 @@ class MyFirstScreen extends StatelessWidget {
   /// also used Key as another argument.
   /// The title is used to display the title
   /// Key is used to identify the widget in the build environment.
-  const MyFirstScreen({Key? key, this.title}) : super(key: key);
+  const MyFirstScreen({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
