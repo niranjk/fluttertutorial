@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertutorial/my_stateless_widget.dart';
 
 ///
 /// Contents in android and ios and web directory are similar to the native ones
@@ -19,7 +20,10 @@ import 'package:flutter/material.dart';
 /// 6. Run Console : Shows all the messages of app while running your app
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MaterialApp(
+    home: MyStateLessWidget()
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -35,7 +39,7 @@ class MyApp extends StatelessWidget {
         theme: CupertinoThemeData(
             primaryColor: Colors.amber
         ),
-        home: CupertinoStoreHomePage(),
+        home: CupertinoHomePage(),
       );
     } else {
       app = MaterialApp(
@@ -50,8 +54,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class CupertinoStoreHomePage extends StatelessWidget {
-  const CupertinoStoreHomePage({Key? key}) : super(key: key);
+class CupertinoHomePage extends StatelessWidget {
+  const CupertinoHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

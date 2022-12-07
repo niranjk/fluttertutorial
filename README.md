@@ -23,3 +23,11 @@ samples, guidance on mobile development, and a full API reference.
 # Flutter Basics 
 - Checking Platforms iOS and creating CupertinoApp 
 - MaterialApp for Android and Web and macos platforms 
+- Scaffold 
+- AppBar 
+- Text
+- Column 
+- Row 
+- Stateless 
+- Statefull 
+- Creating Stateless Widget 
