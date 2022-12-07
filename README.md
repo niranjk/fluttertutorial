@@ -17,3 +17,9 @@ samples, guidance on mobile development, and a full API reference.
 
 ## List of Topics 
 1. Setup your Flutter project to Github. 
+2. Flutter Basics 
+
+
+# Flutter Basics 
+- Checking Platforms iOS and creating CupertinoApp 
+- MaterialApp for Android and Web and macos platforms 

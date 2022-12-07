@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 ///
@@ -7,7 +9,7 @@ import 'package:flutter/material.dart';
 ///
 /// main.dart is the starting point of our app
 ///
-/// List of All Important Toold and Concepts of IDE for Flutter Development
+/// List of All Important Tools and Concepts of IDE for Flutter Development
 /// 1. Dart Analysis : comes from Dart Plugin : used to analyze the Dart code and gives you the error or warning generated
 /// 2. Flutter Outline : TreeStructure of the widgets of your entire codebase of app : useful for navigation
 /// 3. Flutter Inspector : First Run your app in Simulator/Device : useful for debugging and crosschecking: if you click each widget in a Widget Tree
@@ -26,21 +28,38 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue ,
+    dynamic app;
+    if (defaultTargetPlatform == TargetPlatform.iOS){
+      app = const CupertinoApp(
+        title: 'Flutter Tutorial',
+        theme: CupertinoThemeData(
+            primaryColor: Colors.amber
+        ),
+        home: CupertinoStoreHomePage(),
+      );
+    } else {
+      app = MaterialApp(
+        title: "Flutter Tutorial",
+        theme: ThemeData(
+          primarySwatch: Colors.blue ,
+        ),
+          home: const MyHomePage(title: 'Material Home Page')
+      );
+    }
+    return app;
+  }
+}
+
+class CupertinoStoreHomePage extends StatelessWidget {
+  const CupertinoStoreHomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text('Cupertino Home Page'),
       ),
-      home: const MyHomePage(title: 'Flutter Home Page Demo'),
+      child: SizedBox(),
     );
   }
 }
