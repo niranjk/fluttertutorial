@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertutorial/mocks/mock_plants.dart';
+import 'package:fluttertutorial/models/plant_model.dart';
 import 'package:fluttertutorial/my_stateless_widget.dart';
 
 ///
@@ -20,8 +22,9 @@ import 'package:fluttertutorial/my_stateless_widget.dart';
 /// 6. Run Console : Shows all the messages of app while running your app
 
 void main() {
-  runApp(const MaterialApp(
-    home: MyStateLessWidget()
+  final PlantModel plantModel = MockPlants.FetchAny();
+  runApp(MaterialApp(
+    home: MyStateLessWidget(plant: plantModel)
     ),
   );
 }

@@ -31,3 +31,6 @@ samples, guidance on mobile development, and a full API reference.
 - Stateless 
 - Statefull 
 - Creating Stateless Widget 
+- Creating Model Data 
+- Creating Mock Model Data 
+- Using Data to Update View in Flutter 
