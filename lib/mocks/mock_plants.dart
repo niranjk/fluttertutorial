@@ -74,4 +74,8 @@ class MockPlants extends PlantModel {
   static List<PlantModel> FetchAll() {
     return plantsList;
   }
+
+  static PlantModel FetchItemByIndex(int index){
+    return plantsList[index];
+  }
 }

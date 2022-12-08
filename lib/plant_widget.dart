@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertutorial/mocks/mock_plants.dart';
 import 'package:fluttertutorial/models/plant_model.dart';
 import 'styles.dart';
 
 class PlantWidget extends StatelessWidget {
-  final PlantModel plant;
+  final int index;
 
-  const PlantWidget({Key? key, required this.plant}) : super(key: key);
+  const PlantWidget({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var plant = MockPlants.FetchItemByIndex(index);
     return Scaffold(
         appBar: AppBar(
           title: Text(plant.name,

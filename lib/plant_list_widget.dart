@@ -29,16 +29,13 @@ class PlantListWidget extends StatelessWidget {
       contentPadding: const EdgeInsets.all(20.0),
       leading: _itemThumbnail(plant),
       title: _itemTitle(plant),
-      onTap: () => _navigateToPlantDetailPage(context, plant),
+      onTap: () => _navigateToPlantDetailPage(context, index),
     );
   }
 
-  void _navigateToPlantDetailPage(BuildContext context, PlantModel plant) {
-    if (kDebugMode) {
-      print(">>> ${plant.name}");
-    }
+  void _navigateToPlantDetailPage(BuildContext context, int index) {
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => PlantWidget(plant: plant)));
+        MaterialPageRoute(builder: (context) => PlantWidget(index: index,)));
   }
 
   Widget _itemThumbnail(PlantModel item) {
