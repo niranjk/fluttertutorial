@@ -43,3 +43,13 @@ samples, guidance on mobile development, and a full API reference.
 
 # Unit Test in Flutter 
 - Matchers 
+
+# Widget Test / Smoke Test 
+- dev_dependencies: network_image_mock: ^2.0.1 for Mocking Network Images for Integration Test 
+- WidgetTester.pumpWidget(Widget())
+- Matcher : findsNothing 
+
+# Integration Test
+- IntegrationTestWidgetsFlutterBinding.ensureInitialized()
+- WidgetTester.pumpAndSettle()
+- Matcher : findsOneWidget 

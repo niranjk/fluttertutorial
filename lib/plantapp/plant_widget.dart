@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertutorial/mocks/mock_plants.dart';
 import 'package:fluttertutorial/models/plant_model.dart';
-import 'styles.dart';
+
+import '../styles.dart';
 
 class PlantWidget extends StatelessWidget {
   final int index;

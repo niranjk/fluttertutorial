@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertutorial/mocks/mock_plants.dart';
-import 'package:fluttertutorial/plant_list_widget.dart';
+import 'package:fluttertutorial/plantapp/plant_app.dart';
+import 'package:fluttertutorial/plantapp/plant_list_widget.dart';
 
 ///
 /// Contents in android and ios and web directory are similar to the native ones
@@ -21,12 +22,8 @@ import 'package:fluttertutorial/plant_list_widget.dart';
 /// 6. Run Console : Shows all the messages of app while running your app
 
 void main() {
-  final plantModel = MockPlants.FetchAll();
   runApp(
-    MaterialApp(
-        home: PlantListWidget(
-      plants: plantModel,
-    )),
+    PlantApp()
   );
 }
 
