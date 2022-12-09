@@ -4,10 +4,21 @@ import 'package:fluttertutorial/models/plant_model.dart';
 import 'package:fluttertutorial/plantapp/plant_widget.dart';
 import 'package:fluttertutorial/styles.dart';
 
-class PlantListWidget extends StatelessWidget {
-  final List<PlantModel> plants;
+class PlantListWidget extends StatefulWidget {
+  const PlantListWidget({Key? key}) : super(key: key);
 
-  const PlantListWidget({Key? key, required this.plants}) : super(key: key);
+  @override
+  State<PlantListWidget> createState() => _PlantListWidgetState();
+}
+
+class _PlantListWidgetState extends State<PlantListWidget> {
+  List<PlantModel> plants = [];
+
+  @override
+  void initState(){
+    super.initState();
+    loadData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +32,14 @@ class PlantListWidget extends StatelessWidget {
       body: ListView.builder(
           itemCount: plants.length, itemBuilder: _listViewItemBuilder),
     );
+  }
+
+  loadData() async {
+    final plantList = await PlantModel.fetchAllPlants();
+    // setState will call build function each time when data is updated..
+    setState(() {
+      plants = plantList;
+    });
   }
 
   Widget _listViewItemBuilder(BuildContext context, int index) {

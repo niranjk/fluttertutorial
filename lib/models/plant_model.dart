@@ -1,5 +1,10 @@
 
+import 'dart:convert';
+
+import 'package:fluttertutorial/plantapp/plant_endpoint.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:http/http.dart' as http;
+
 
 /// This allows the `PlantModel` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
@@ -33,5 +38,26 @@ class PlantModel{
   /// to JSON. The implementation simply calls the private, generated
   /// helper method `_$PlantModelToJson`.
   Map<String, dynamic> toJson() => _$PlantModelToJson(this);
+
+  PlantModel.blank() :
+      plantId = "1",
+      name = "",
+      description = "",
+      growZoneNumber = 1,
+      wateringInterval = 1,
+      imageUrl = "";
+
+  static Future<List<PlantModel>> fetchAllPlants() async {
+    var uri = PlantEndpoint.uri("plants.json");
+    final response = await http.get(uri);
+    if ( response.statusCode != 200 ){
+      throw ( response.body);
+    }
+    List<PlantModel> plantList = <PlantModel>[];
+    for ( var jsonItem in json.decode(response.body)){
+      plantList.add(PlantModel.fromJson(jsonItem));
+    }
+    return plantList;
+  }
 }
 

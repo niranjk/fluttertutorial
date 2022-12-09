@@ -29,7 +29,7 @@ samples, guidance on mobile development, and a full API reference.
 - Column 
 - Row 
 - Stateless 
-- Statefull 
+- Stateful
 - Creating Stateless Widget 
 - Creating Model Data 
 - Creating Mock Model Data 
@@ -54,12 +54,16 @@ samples, guidance on mobile development, and a full API reference.
 - WidgetTester.pumpAndSettle()
 - Matcher : findsOneWidget 
 
-# Webservices 
+# WebServices 
 - Json String
 - Serialization : Encoding 
 - Deserialization : Decoding 
 - Serializing JSON manually using dart:convert
 - Serializing JSON using code generation library json_serializable, build_runner, json_annotation 
+- http package 
+- URI : Universal Resource Identifier 
+- Unit testing WebServices 
+- Using StatefulWidget to update view with data received from WebServices
 
 # ALL Flutter Commands 
 - flutter doctor  

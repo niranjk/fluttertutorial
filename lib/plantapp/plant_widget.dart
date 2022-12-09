@@ -1,30 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertutorial/mocks/mock_plants.dart';
 import 'package:fluttertutorial/models/plant_model.dart';
 
 import '../styles.dart';
 
-class PlantWidget extends StatelessWidget {
+class PlantWidget extends StatefulWidget {
   final int index;
-
   const PlantWidget({Key? key, required this.index}) : super(key: key);
 
   @override
+  State<PlantWidget> createState() => _PlantWidgetState(this.index);
+}
+
+class _PlantWidgetState extends State<PlantWidget> {
+  final int _index;
+  var plant = PlantModel.blank();
+
+  _PlantWidgetState(this._index);
+
+  @override
+  void initState(){
+    super.initState();
+    loadData();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var plant = MockPlants.FetchItemByIndex(index);
     return Scaffold(
-        appBar: AppBar(
-          title: Text(plant.name,
+      appBar: AppBar(
+        title: Text(plant.name,
           style: PlantStyles.navBarStyle,
-          ),
         ),
-        body: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: _renderBody(context, plant),
-            )),
-        );
+      ),
+      body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: _renderBody(context, plant),
+          )),
+    );
+  }
+
+  loadData() async{
+     final plantList = await PlantModel.fetchAllPlants();
+     setState(() {
+       plant = plantList[_index];
+     });
   }
 
   List<Widget> _renderBody( BuildContext context, PlantModel plantModel){
@@ -45,10 +65,10 @@ class PlantWidget extends StatelessWidget {
 
   Widget _sectionTitle(String text) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-      child: Text(
-        text,
-        style: PlantStyles.headerLarge)
+        padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+        child: Text(
+            text,
+            style: PlantStyles.headerLarge)
     );
   }
 
