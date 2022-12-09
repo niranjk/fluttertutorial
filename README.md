@@ -64,6 +64,8 @@ samples, guidance on mobile development, and a full API reference.
 - URI : Universal Resource Identifier 
 - Unit testing WebServices 
 - Using StatefulWidget to update view with data received from WebServices
+- Show ProgressBar which waiting for response : LinearProgressIndicator Widget 
+- If WebServices fails provide Pull to Refresh mechanism : RefreshIndicator Widget 
 
 # ALL Flutter Commands 
 - flutter doctor  

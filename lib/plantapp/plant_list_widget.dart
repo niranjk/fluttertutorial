@@ -13,6 +13,7 @@ class PlantListWidget extends StatefulWidget {
 
 class _PlantListWidgetState extends State<PlantListWidget> {
   List<PlantModel> plants = [];
+  bool loading = false;
 
   @override
   void initState(){
@@ -29,17 +30,43 @@ class _PlantListWidgetState extends State<PlantListWidget> {
           style: PlantStyles.navBarStyle,
         ),
       ),
-      body: ListView.builder(
-          itemCount: plants.length, itemBuilder: _listViewItemBuilder),
+      body: RefreshIndicator(
+        onRefresh: loadData,
+        child: Column(
+          children: [
+            _renderProgressBar(context),
+            _renderListView(context)
+          ],
+        ),
+      )
     );
   }
 
-  loadData() async {
-    final plantList = await PlantModel.fetchAllPlants();
-    // setState will call build function each time when data is updated..
-    setState(() {
-      plants = plantList;
-    });
+  Widget _renderProgressBar(BuildContext context){
+    return (loading ? const LinearProgressIndicator(
+      value: null,
+      backgroundColor: Colors.white,
+      valueColor: AlwaysStoppedAnimation<Color>(Colors.indigo),) : Container());
+  }
+
+  Widget _renderListView(BuildContext context){
+    return Expanded(child:
+    ListView.builder(
+        itemCount: plants.length,
+        itemBuilder: _listViewItemBuilder),
+    );
+  }
+
+  Future<void> loadData() async {
+    if(mounted){
+      setState(()=> loading = true);
+      final plantList = await PlantModel.fetchAllPlants();
+      // setState will call build function each time when data is updated..
+      setState(() {
+        plants = plantList;
+        loading = false;
+      });
+    }
   }
 
   Widget _listViewItemBuilder(BuildContext context, int index) {
