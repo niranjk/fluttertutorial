@@ -53,3 +53,20 @@ samples, guidance on mobile development, and a full API reference.
 - IntegrationTestWidgetsFlutterBinding.ensureInitialized()
 - WidgetTester.pumpAndSettle()
 - Matcher : findsOneWidget 
+
+# Webservices 
+- Json String
+- Serialization : Encoding 
+- Deserialization : Decoding 
+- Serializing JSON manually using dart:convert
+- Serializing JSON using code generation library json_serializable, build_runner, json_annotation 
+
+# ALL Flutter Commands 
+- flutter doctor  
+- flutter create <project-name> 
+- flutter run  
+- flutter --help --verbose 
+- flutter test 
+- flutter test integration_test
+- flutter pub run build_runner build --delete-conflicting-outputs
+- flutter pub run build_runner watch --delete-conflicting-outputs

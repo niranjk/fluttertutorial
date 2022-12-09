@@ -41,9 +41,9 @@ void main(){
     // isTrue matches if the property is true
     expect(fetchAnyPlant.name.length < 20 , isTrue);
     // matches if the object is a List
-    expect(fetchAnyPlant.facts, TypeMatcher<List>());
+    expect(fetchAnyPlant.description, TypeMatcher<String>());
     // isNonNegative matches if the argument is zero or positive
-    expect(fetchAnyPlant.facts.length, isNonNegative);
+    expect(fetchAnyPlant.description.length, isNonNegative);
     // isNotNull matches if object is not null
     expect(fetchAnyPlant, isNotNull);
     // Constants -- End
@@ -54,7 +54,7 @@ void main(){
     // Returns a matches that matches if the value is the same instance as expected, using identical.
     expect(fetchAnyPlant.name, same("Apple"));
     // Returns a matcher which matches if the match argument is less than or equal to the given value.
-    expect(fetchAnyPlant.facts.length, lessThanOrEqualTo(10));
+    expect(fetchAnyPlant.description.length, lessThanOrEqualTo(2000));
     // Returns a matcher that matches if the match argument contains the expected value.
     expect(fetchAnyPlant.name, contains("Apple"));
   });

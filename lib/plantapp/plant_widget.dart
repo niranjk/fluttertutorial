@@ -18,11 +18,13 @@ class PlantWidget extends StatelessWidget {
           style: PlantStyles.navBarStyle,
           ),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: _renderBody(context, plant),
-        ));
+        body: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: _renderBody(context, plant),
+            )),
+        );
   }
 
   List<Widget> _renderBody( BuildContext context, PlantModel plantModel){
@@ -36,10 +38,8 @@ class PlantWidget extends StatelessWidget {
 
   List<Widget> _renderInfo(BuildContext context, PlantModel plantModel) {
     var result = <Widget>[];
-    for (int i = 0; i < plantModel.facts.length; i++) {
-      result.add(_sectionTitle(plantModel.facts[i].title));
-      result.add(_sectionInfo(plantModel.facts[i].info));
-    }
+    result.add(_sectionTitle("${plantModel.name} Info"));
+    result.add(_sectionInfo(plantModel.description));
     return result;
   }
 
