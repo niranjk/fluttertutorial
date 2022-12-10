@@ -67,6 +67,14 @@ samples, guidance on mobile development, and a full API reference.
 - Show ProgressBar which waiting for response : LinearProgressIndicator Widget 
 - If WebServices fails provide Pull to Refresh mechanism : RefreshIndicator Widget 
 
+# Customising Widgets 
+- ListTile Widgets 
+- ListView Widgets
+- GestureDetector Widget 
+- SizedBox 
+- Stack
+
+
 # ALL Flutter Commands 
 - flutter doctor  
 - flutter create <project-name> 

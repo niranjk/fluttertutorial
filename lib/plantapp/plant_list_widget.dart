@@ -1,9 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertutorial/models/plant_model.dart';
+import 'package:fluttertutorial/plantapp/components/plant_footer_tile.dart';
+import 'package:fluttertutorial/plantapp/components/plant_header_tile.dart';
 import 'package:fluttertutorial/plantapp/plant_widget.dart';
 import 'package:fluttertutorial/styles.dart';
 
+const ListItemHeight = 250.0;
 class PlantListWidget extends StatefulWidget {
   const PlantListWidget({Key? key}) : super(key: key);
 
@@ -71,11 +74,18 @@ class _PlantListWidgetState extends State<PlantListWidget> {
 
   Widget _listViewItemBuilder(BuildContext context, int index) {
     var plant = plants[index];
-    return ListTile(
-      contentPadding: const EdgeInsets.all(20.0),
-      leading: _itemThumbnail(plant),
-      title: _itemTitle(plant),
+    return GestureDetector(
       onTap: () => _navigateToPlantDetailPage(context, index),
+      child: SizedBox(
+          height: ListItemHeight,
+          child: Stack(
+            children: [
+              _tileImage(plant.imageUrl, MediaQuery.of(context).size.width, ListItemHeight),
+              _tileHeader(plant),
+              _tileFooter(plant),
+            ],
+          )
+      ),
     );
   }
 
@@ -86,11 +96,60 @@ class _PlantListWidgetState extends State<PlantListWidget> {
 
   Widget _itemThumbnail(PlantModel item) {
     return Container(
-      constraints: BoxConstraints.tightFor(width: 100.0, height: 300.0),
+      constraints: const BoxConstraints.tightFor(width: 100.0, height: 300.0),
       child: Image.network(
         item.imageUrl,
         fit: BoxFit.fitWidth,
       ),
+    );
+  }
+
+  Widget _tileImage(String url, double width, double height){
+    Image image;
+    try {
+      image = Image.network(url, fit: BoxFit.cover,);
+      return Container(
+        constraints: const BoxConstraints.expand(),
+        child: image,
+      );
+    } catch (e){
+      print("Image loading error: $url");
+      return Container();
+    }
+  }
+
+  Widget _tileHeader(PlantModel plant){
+    final header = PlantHeaderTile(plant: plant, darkTheme: true);
+    final overlay =  Container(
+      height: 80.0,
+      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: PlantStyles.horizontalPaddingDefault),
+      decoration: BoxDecoration(color: Colors.grey.withOpacity(0.5)),
+      child: header,
+    );
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        overlay,
+      ],
+    );
+  }
+
+  Widget _tileFooter(PlantModel plant){
+    final footer = PlantFooterTile(plant: plant, darkTheme: false);
+    final overlay =  Container(
+      width: 180.0,
+      height: 50.0,
+      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: PlantStyles.horizontalPaddingDefault),
+      decoration: BoxDecoration(color: Colors.grey.withOpacity(0.5)),
+      child: footer,
+    );
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        overlay
+      ],
     );
   }
 
