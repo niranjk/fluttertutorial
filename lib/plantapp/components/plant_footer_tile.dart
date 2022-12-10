@@ -22,11 +22,11 @@ class PlantFooterTile extends StatelessWidget {
         children: [
           Text("GROW ZONE: $growZone",
             maxLines: 1,
-            style: PlantStyles.plantTileSubtitleDark,
+            style: darkTheme? PlantStyles.plantTileSubtitleDark: PlantStyles.plantTileSubtitleLight,
           ),
           Text("WATERING INTERVAL: $wateringLevel",
             maxLines: 1,
-            style: PlantStyles.plantTileSubtitleDark,
+            style: darkTheme? PlantStyles.plantTileSubtitleDark: PlantStyles.plantTileSubtitleLight,
           ),
         ],
       ),

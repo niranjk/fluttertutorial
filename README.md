@@ -73,6 +73,10 @@ samples, guidance on mobile development, and a full API reference.
 - GestureDetector Widget 
 - SizedBox 
 - Stack
+- url_launcher package 
+- TextButton 
+- Handle Button Press 
+- Custom AppBar
 
 
 # ALL Flutter Commands 

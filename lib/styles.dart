@@ -50,7 +50,7 @@ class PlantStyles{
     fontFamily: _fontDefault,
     fontSize: _textSizeDefault,
     fontWeight: FontWeight.bold,
-    color: Colors.white,
+    color: Colors.black,
   );
 
   static const plantTileSubtitleDark = TextStyle(

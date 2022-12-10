@@ -1,12 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertutorial/models/plant_model.dart';
+import 'package:fluttertutorial/plantapp/components/plant_app_bar.dart';
+import 'package:fluttertutorial/plantapp/components/plant_banner_image.dart';
 import 'package:fluttertutorial/plantapp/components/plant_footer_tile.dart';
 import 'package:fluttertutorial/plantapp/components/plant_header_tile.dart';
 import 'package:fluttertutorial/plantapp/plant_widget.dart';
 import 'package:fluttertutorial/styles.dart';
 
-const ListItemHeight = 250.0;
+const listItemHeight = 250.0;
 class PlantListWidget extends StatefulWidget {
   const PlantListWidget({Key? key}) : super(key: key);
 
@@ -27,12 +29,7 @@ class _PlantListWidgetState extends State<PlantListWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Plants Factory",
-          style: PlantStyles.navBarStyle,
-        ),
-      ),
+      appBar: PlantAppBar(),
       body: RefreshIndicator(
         onRefresh: loadData,
         child: Column(
@@ -77,10 +74,10 @@ class _PlantListWidgetState extends State<PlantListWidget> {
     return GestureDetector(
       onTap: () => _navigateToPlantDetailPage(context, index),
       child: SizedBox(
-          height: ListItemHeight,
+          height: listItemHeight,
           child: Stack(
             children: [
-              _tileImage(plant.imageUrl, MediaQuery.of(context).size.width, ListItemHeight),
+              PlantBannerImage(url: plant.imageUrl, height: listItemHeight),
               _tileHeader(plant),
               _tileFooter(plant),
             ],
@@ -104,20 +101,6 @@ class _PlantListWidgetState extends State<PlantListWidget> {
     );
   }
 
-  Widget _tileImage(String url, double width, double height){
-    Image image;
-    try {
-      image = Image.network(url, fit: BoxFit.cover,);
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        child: image,
-      );
-    } catch (e){
-      print("Image loading error: $url");
-      return Container();
-    }
-  }
-
   Widget _tileHeader(PlantModel plant){
     final header = PlantHeaderTile(plant: plant, darkTheme: true);
     final overlay =  Container(
@@ -136,7 +119,7 @@ class _PlantListWidgetState extends State<PlantListWidget> {
   }
 
   Widget _tileFooter(PlantModel plant){
-    final footer = PlantFooterTile(plant: plant, darkTheme: false);
+    final footer = PlantFooterTile(plant: plant, darkTheme: true);
     final overlay =  Container(
       width: 180.0,
       height: 50.0,
